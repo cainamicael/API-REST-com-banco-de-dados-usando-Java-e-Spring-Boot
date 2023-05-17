@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,6 +30,13 @@ public class UserController {
 	@GetMapping(value = "/{id}")//Para dizer que é do verbo GET e que vamos passar o id - /users/7 por exemplo
 	public User findById(@PathVariable Long id) {//Para casar o id da url com o id do parâmetro
 		User result = repository.findById(id).get(); //Para pegar o valor do objeto que retorna
+		return result;
+		
+	}
+	
+	@PostMapping//Para dizer que é do verbo Post
+	public User insert(@RequestBody User user) {//Para adicionar um novo usuario que virá no corpo da requisição
+		User result = repository.save(user); //Para pegar o valor do objeto que retorna
 		return result;
 		
 	}
