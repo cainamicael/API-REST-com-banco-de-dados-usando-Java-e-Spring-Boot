@@ -27,7 +27,7 @@ public class UserController {
 	
 	@GetMapping(value = "/{id}")//Para dizer que é do verbo GET e que vamos passar o id - /users/7 por exemplo
 	public User findById(@PathVariable Long id) {//Para casar o id da url com o id do parâmetro
-		User result = repository.findById(id).get(); //Para pegar o valor
+		User result = repository.findById(id).get(); //Para pegar o valor do objeto que retorna
 		return result;
 		
 	}
