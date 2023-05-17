@@ -2,3 +2,43 @@ ORM = Object Relative Mapping
 Transformação do modelo relacional em um modelo de objetos
 
 Vamos fazer o ORM usando a ferramenta de ORM (JPA)
+
+Configurando banco de dados h2 (resources/application.properties)
+
+# Dados de conexão com o banco H2
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.username=sa
+spring.datasource.password=
+
+# Configuração do cliente web do banco H2
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+
+# Configuração para mostrar o SQL no console
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+Importando sql (resources/import.sql):
+
+Quando rodar o projeto, por padrão já serão executadas essas queries
+
+INSERT INTO tb_department(name) VALUES ('Gestão');
+INSERT INTO tb_department(name) VALUES ('Informática');
+
+INSERT INTO tb_user(department_id, name, email) VALUES (1, 'Maria', 'maria@gmail.com');
+INSERT INTO tb_user(department_id, name, email) VALUES (1, 'Bob', 'bob@gmail.com');
+INSERT INTO tb_user(department_id, name, email) VALUES (2, 'Alex', 'alex@gmail.com');
+INSERT INTO tb_user(department_id, name, email) VALUES (2, 'Ana', 'ana@gmail.com');
+
+Todas as informações básicas de CRUD:
+
+package com.devsuperior.userdept.repositories;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.devsuperior.userdept.entities.User;
+
+//Aqui temos todas as informações básicas de crud
+public interface UserRepository extends JpaRepository<User, Long /*Tipo primitivo do ID do usuário*/>{
+
+}
